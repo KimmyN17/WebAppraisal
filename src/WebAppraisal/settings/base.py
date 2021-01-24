@@ -49,8 +49,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django_nose',
-    'src.webapp.apps.WebappConfig'
-]
+    'src.webapp']
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -62,7 +61,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'src.WebAppraisal.urls'
+ROOT_URLCONF = 'src.webapp.urls'
 
 TEMPLATES = [
     {
