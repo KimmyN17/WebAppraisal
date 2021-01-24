@@ -1,102 +1,35 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-	<meta name="viewport" content="width=device-width, initial-scale=1.0;">
 
-<style type='text/css'>
+<head>
+  <link rel="stylesheet" href="../static/css/loginstyle.css">
+</head>
 
-input[type=text], input[type=password] {
-	width: 50%;
-	padding: 15px;
-	margin: 5px 0 22px 0;
-	display: inline-block;
-	border: none;
-	background: #f1f1f1;
-}
-
-input[type=text]:focus, input[type=password]:focus {
-	background-color: #ddd;
-}
-
-button {
-	background-color: #4CAF50;
-	color: white;
-	padding: 18px 20px;
-	margin: 8px 0;
-	border: none;
-	cursor: pointer;
-	width: 100%;
-	opacity: 0.8;
-}
-
-button:hover {
-	opacity:1;
-}
-
-.signupbtn {
-	float: center;
-	width: 50%;
-}
-
-.createaccount {
-	background-color: #4CAF50;
-	color: white;
-	padding: 10px 20px;
-	margin: 8px 0;
-	border: none;
-	cursor: pointer;
-	width: 100%;
-	opacity: 0.8;
-	text-decoration: none
-}
-
-.container {
-	padding: 16px;
-}
-
-.box {
-	border-radius: 10px;
-	left: 0;
-	top: 0;
-	width: 15%;
-	height: 15%;
-	margin: auto;
-	background-color: #FFFFFF;
-	padding-top: 10px;
-}
-
-hr {
-	border: 1px solid #f1f1f1;
-	margin-bottom: 25px;
-}
- 
-
-</style>
-<div style="vertical-align: middle;height: 1000px; background-image: url('https://www.cvfhomes.com/wp-content/uploads/2019/03/631-simple-way-san-antonio-tx-1-High-Res-2.jpg');background-size: cover;" >
+<body>
+<div style="vertical-align: middle; height:1200px; background-image: url('https://www.cvfhomes.com/wp-content/uploads/2019/03/631-simple-way-san-antonio-tx-1-High-Res-2.jpg');background-size: cover;" >
 	<div class="container">
 		<div style="text-align:center">
 			<font color="#ffffff" size="12px"><h1>WebAppraisal</h1></font>
-			<div class="box" style="display:block; text-align:center">
+			<div class="box" style="display:block; text-align:center; min-width:300px">
 				<form>
-					<div class="container">
+					<div class="container" style="">
 						
 						<div style="margin:auto">
 							<h1>Sign In</h1>
-						
-							<p>Enter username/email and password to sign into your WebAppraisal <b>Appraiser</b> or <b>Customer</b> account.</p>
-							<hr>			
-							<table style="width:100%; vertical-align:middle">
-							  <tr>
-								<th style="vertical-align:middle"><label for="email"><b>Email</b></label></th>
-								<th><input type="text" placeholder="example@gmail.com" name="email" required></th>
-							  </tr>
-							  <tr>
-								<td><label for="psw"><b>Password</b></label></td>
-								<td><input type="password" placeholder="Enter password" name="psw" required></td>
-							  </tr>
-							</table>
 							
+							<p>Enter username/email and password to sign into your WebAppraisal <b>Appraiser</b> or <b>Customer</b> account.</p>
+							<hr>
+							<div>
+								<div>
+									<label style="text-align:left" for="email"><b>Email</b></label>
+									<input type="text" placeholder="example@gmail.com" name="email" required></th>
+								</div>
+								<div>
+									<label for="psw"><b>Password</b></label>
+									<input type="password" placeholder="Enter password" name="psw" required>
+								</div>
+							</div>
 							<button type="submit" onclick="">Sign In</button>
 						</div>
 						
@@ -105,6 +38,7 @@ hr {
 						<div style="margin:auto">
 							<h1>Not a member?</h1>
 							<a href="" class="createaccount">Create account</a>
+							<br>
 							<br>
 						</div>
 					
