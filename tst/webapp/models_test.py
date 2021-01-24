@@ -1,6 +1,6 @@
 from django.test import TestCase
-from src.webapp.models import Profile
-from src.webapp.models import User
+from webapp.models import Profile
+from webapp.models import User
 
 class ModelsTest(TestCase):
     def test_profile(self):
