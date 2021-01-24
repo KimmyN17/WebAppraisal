@@ -55,3 +55,7 @@ A: You may be running the project locally for the first time. Follow these steps
 3. Deactivate your virtual environment by running `deactivate` while within your virtual environment
 4. Re-activate your environment to apply your changes by running `source venv/bin/activate`
 5. Retry running `python manage.py runserver`
+
+Q: Why am I receiving an ImportError?
+
+A: You may not have the package requirements. Open up the requirements.txt inside Pycharm. If a message says the requirements are not satisfied, click the "Install Requirements" option.
