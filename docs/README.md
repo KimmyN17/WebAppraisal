@@ -19,16 +19,17 @@
 
 4. Set up Virtual env in Windows.
 
-   0. Make sure Django is installed by running the following in CMD prompt "py -m pip install Django"
    1. login to pycharm and Open cloned project from GitHub
    2. On the bottom of the pycharm window select Terminal
    3. Find where your python install is located, you will need to run the command in terminal from this directory. **You can do this by running this command in CMD Prompt "py -c "import os, sys; print(os.path.dirname(sys.executable))"
    4. change directorys in terminal to the file path given in the above cmd
    5. once in the correct directory run 'py -m venv C:\"YourFilePathOfGitHubProject"\venv     *It is important to remember the folder name after your GitHub Project File Path in order to create a folder and avoid installing in the root of your project
      *Running this correctly should get you a new folder in your pycharm client in the WebAppraisal project called "venv"
-   6. activate your virtual enviorment with venv\scripts\activate in CMD prompt
-   7. in pycharm, double click the shift key and type in "base" in the search box. Open up the base webApprasial.settings file, and press cntrl F to search for the "SECRET_KEY" variable. Replace the value to SECRET_KEY = 'secretkeyvalue' (secret key can be found in the discord)
-    
+   6.  in pycharm, double click the shift key and type in "base" in the search box. Open up the base webApprasial.settings file, and press cntrl F to search for the "SECRET_KEY" variable. Replace the value to SECRET_KEY = 'secretkeyvalue' (secret key can be found in the discord)
+   7. CD back to the path of the github project and activate your virtual enviorment with venv\scripts\activate in CMD prompt
+   8. In the terminal, make sure your all the requirements are installed by running pip install -r requirements.txt
+  **Note. Make sure you are installing the requirements inside your virtual environment. You should see (venv) in the terminal.
+   
 ### Running Locally
 (MAC)
 
@@ -58,4 +59,4 @@ A: You may be running the project locally for the first time. Follow these steps
 
 Q: Why am I receiving an ImportError?
 
-A: You may not have the package requirements. Open up the requirements.txt inside Pycharm. If a message says the requirements are not satisfied, click the "Install Requirements" option.
+A: You may not have the package requirements. Open up the requirements.txt inside Pycharm. If a message says the requirements are not satisfied, click the "Install Requirements" option. Alternatviely, you can run running pip install -r requirements.txt to install all the libraries listed in the requirements.txt file.
