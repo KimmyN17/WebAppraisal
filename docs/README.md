@@ -41,6 +41,16 @@
 1. while in CMD prompt and have you venv active type 'py manage.py runserver'
 2. Visit http://127.0.0.1:8000/, which will direct you to the landing page for our webapp.
 
+(USING DOCKER)
+1. Download [the Docker desktop app](https://docs.docker.com/get-docker/). If you already own Docker, please ensure that you have the `docker-compose` command. If not, install [here](https://docs.docker.com/compose/install/).
+2. Open up the Docker desktop app and follow the instruction to start running your first container.
+3. Create a file titled `.env` (do not specify a file type) under the top project directory (this should be named WebAppraisal but you may have named it something else)
+    * Add the following lines to this file: 
+    
+        `SECRET_KEY=INSERT SECRET KEY HERE WITHOUT QUOTES`
+    `DATABASE_URL=postgres://postgres:postgres@db:5432/postgres`
+4. Run the following command from the top project directory: `docker-compose up --build`
+5. If you see `Starting development server at http://0.0.0.0:8000/` you are able to run the webapp locally! Try creating an account to ensure that the database is functional and refer to the FAQ section if you run into an error while creating your first account.
 
 ### Running in Production Environment
 * We are quite there yet
@@ -57,6 +67,17 @@ A: You may be running the project locally for the first time. Follow these steps
 4. Re-activate your environment to apply your changes by running `source venv/bin/activate`
 5. Retry running `python manage.py runserver`
 
+
 Q: Why am I receiving an ImportError?
 
 A: You may not have the package requirements. Open up the requirements.txt inside Pycharm. If a message says the requirements are not satisfied, click the "Install Requirements" option. Alternatviely, you can run running pip install -r requirements.txt to install all the libraries listed in the requirements.txt file.
+
+
+Q: Why am I seeing errors when attempting to create a user for the first time with docker?
+
+A: You may have to make migrations to the update the database schema. Run the command `docker-compose run web python3 manage.py migrate` and then `docker-compose up --build` and try again.
+
+
+Q: How do I create my admin account?
+
+A: Run the command `docker-compose run web python manage.py createsuperuser` and enter your information.
