@@ -43,8 +43,8 @@
 
 (USING DOCKER)
 1. Download [the Docker desktop app](https://docs.docker.com/get-docker/). If you already own Docker, please ensure that you have the `docker-compose` command. If not, install [here](https://docs.docker.com/compose/install/).
-  a. You must have Hyper-V enabled for this to work. Follow this guide on how to do this: https://docs.microsoft.com/en-us/virtualization/hyper-v-on-windows/quick-start/enable-hyper-v 
-  b. If you have Windows 10 home, you need to install the WSL2 feature for Windows. Follow this guide to set this up: https://docs.docker.com/docker-for-windows/install-windows-home/
+  a. You must have Hyper-V enabled for this to work. Follow [this](https://docs.microsoft.com/en-us/virtualization/hyper-v-on-windows/quick-start/enable-hyper-v) guide on how to do this.
+  b. If you have Windows 10 home, you need to install the WSL2 feature for Windows. Follow [this](https://docs.docker.com/docker-for-windows/install-windows-home/) guide to set this up.
 
 2. Create a file titled `.env` (do not specify a file type) under the top project directory (this should be named WebAppraisal but you may have named it something else)
     * Add the following lines to this file: 
