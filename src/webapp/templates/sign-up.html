@@ -1,103 +1,85 @@
-<link rel="stylesheet" href="../static/css/signupstyle.css">
+<!DOCTYPE html>
+<html lang="en">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 
-{% block content %}
-    <div class="container">
-      <h2>Create your WebAppraisal Account </h2>
-      <form method="post">
-          {% csrf_token %}
-          <p>
-            <strong>{{ form.username.label_tag }}</strong><br>
-            {{ form.username }}
-            {% if form.username.help_text %}
-              <small style="color: grey">{{ field.username.help_text }}</small>
-            {% endif %}
-            {% for error in field.username.errors %}
-              <p style="color: red">{{ error }}</p>
-            {% endfor %}
-          </p>
+<head>
+  <link rel="stylesheet" href="../static/css/signupstyle.css">
+</head>
 
-        <p>
-            <strong>{{ form.first_name.label_tag }}</strong><br>
-            {{ form.first_name }}
-            {% if form.first_name.help_text %}
-              <small style="color: grey">{{ field.first_name.help_text }}</small>
-            {% endif %}
-            {% for error in field.first_name.errors %}
-              <p style="color: red">{{ error }}</p>
-            {% endfor %}
-          </p>
+<body>
+<div style="vertical-align: middle; height:1200px; background-image: url('https://www.cvfhomes.com/wp-content/uploads/2019/03/631-simple-way-san-antonio-tx-1-High-Res-2.jpg');background-size: cover;" >
+	<div class="container">
+		<div style="text-align:center">
+			<font color="#ffffff" size="12px"><h1>WebAppraisal</h1></font>
+			<div class="box" style="display:block; text-align:center; min-width:900px">
+				<form>
+					<div class="container" style="">
+						
+						<div style="margin:auto;">
+							<h1>Create your account</h1>
+							<hr>
+							<form>
+								<div id="left_block" style="width:48%; float:left; padding:10px; border-right:1px solid black">
+									<div>
+										<label for="username"><b>Username<span style="color:red">*</span></b></label>
+										<input type="text" placeholder="Enter username" name="username" required></input>
+									</div>
+								
+									<div>
+										<label><b>First Name<span style="color:red">*</span></b></label>
+										<input type="text" placeholder="Enter first name" name="first_name" required></input>
+									</div>
+									
+									<div>
+										<label><b>Last Name<span style="color:red">*</span></b></label>
+										<input type="text" placeholder="Enter last name" name="last_name"></input>
+									</div>
+								
+									<span style="display:inline-block">
+										<label><b>Email<span style="color:red">*</span></b></label>
+										<input type="email" placeholder="example@gmail.com" name="email" required></input>
+									</span>
+								</div> <!-- END LEFT BLOCK -->
+								
+								<div id="right_block" style="width:48%; float:left">
+									<div>
+										<label><b>Password<span style="color:red">*</span></b></label>
+										<input type="password" placeholder="Enter password" name="password1" required></input>
+									</div>
+								
+									<div>
+										<label><b>Re-enter Password<span style="color:red">*</span></b></label>
+										<input type="password" placeholder="Re-enter password" name="password2" required></input>
+									</div>
+									
+									<div>
+										<label><b>Phone (Optional):</b></label>
+										<input type="number" placeholder="(123)-456-7890" name="phone_number"></input>
+									</div>
+									<br>
+									<label><b>I am a(an):<span style="color:red">*</span></b></label>
+									<select name="account_type" required>
+										<option value="customer">Customer</option>
+										<option value="appraiser">Appraiser</option>
+									</select>
+								</div> <!-- END RIGHT BLOCK -->
+								
+								<button class="createaccount" type="submit" onclick="">Create Account</button>
+								
+							</form>
+							
+						</div>
+						
+						<hr>
+					
+					
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+	
+</body>
 
-          <p>
-            <strong>{{ form.last_name.label_tag }}</strong><br>
-            {{ form.last_name }}
-            {% if form.last_name.help_text %}
-              <small style="color: grey">{{ field.last_name.help_text }}</small>
-            {% endif %}
-            {% for error in field.last_name.errors %}
-              <p style="color: red">{{ error }}</p>
-            {% endfor %}
-          </p>
-
-          <p>
-            <strong>{{ form.email.label_tag }}</strong><br>
-            {{ form.email }}
-            {% if form.email.help_text %}
-              <small style="color: grey">{{ field.email.help_text }}</small>
-            {% endif %}
-            {% for error in field.email.errors %}
-              <p style="color: red">{{ error }}</p>
-            {% endfor %}
-          </p>
-
-          <p>
-            <strong>{{ form.password1.label_tag }}</strong><br>
-            {{ form.password1 }}
-            {% if form.password1.help_text %}
-              <small style="color: grey">{{ field.password1.help_text }}</small>
-            {% endif %}
-            {% for error in field.password1.errors %}
-              <p style="color: red">{{ error }}</p>
-            {% endfor %}
-          </p>
-
-          <p>
-            <strong>{{ form.password2.label_tag }}</strong><br>
-            {{ form.password2 }}
-            {% if form.password2.help_text %}
-              <small style="color: grey">{{ field.password2.help_text }}</small>
-            {% endif %}
-            {% for error in field.password2.errors %}
-              <p style="color: red">{{ error }}</p>
-            {% endfor %}
-          </p>
-
-          <p>
-            <strong>{{ form.phone_number.label_tag }} (Optional)<strong/><br>
-            {{ form.phone_number }}
-            {% if form.phone_number.help_text %}
-              <small style="color: grey">{{ field.phone_number.help_text }}</small>
-            {% endif %}
-            {% for error in field.phone_number.errors %}
-              <p style="color: red">{{ error }}</p>
-            {% endfor %}
-          </p>
-
-      <div class="custom-select" style="width:200px;">
-          <p><strong>I am a(n)...</strong>
-                {{ form.user_role }}
-                {% if form.user_role.help_text %}
-                  <small style="color: grey">{{ field.user_role.help_text }}</small>
-                {% endif %}
-                {% for error in field.user_role.errors %}
-                  <p style="color: red">{{ error }}</p>
-                {% endfor %}
-        </p>
-      </div>
-
-        <div class="clearfix">
-            <button type="submit" class="signupbtn">Sign Up</button>
-            <button type="button" class="cancelbtn">Cancel</button>
-        </div>
-      </form>
-    </div>
-{% endblock %}
+</html>
