@@ -8,6 +8,7 @@ media
 # Backup files # 
 *.bak 
 
+
 .idea/**/workspace.xml
 .idea/**/tasks.xml 
 .idea/dictionaries 

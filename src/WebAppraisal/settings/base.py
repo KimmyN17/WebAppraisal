@@ -19,6 +19,8 @@ from environ import Env
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+LOGIN_REDIRECT_URL = 'home'
+
 env = Env()
 env.read_env(env_file='.env')
 
@@ -44,6 +46,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django_nose',
+    'widget_tweaks',
     'src.webapp']
 
 MIDDLEWARE = [

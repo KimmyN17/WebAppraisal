@@ -1,7 +1,10 @@
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import render
 from django.shortcuts import redirect
 from django.contrib.auth.models import User
+from django.shortcuts import render, redirect
+from django.contrib.auth import authenticate, login
+from django.contrib.auth.forms import AuthenticationForm
 
 from src.WebAppraisal.forms import NewUserForm
 from src.webapp.models import Profile
@@ -15,7 +18,29 @@ def redirect_to_login(request):
 
 # login page - default when first opening the webapp
 def login_view(request):
-    return render(request, 'loginpage.html')
+    # TODO: Remove once logout button is functioning
+    logout(request)
+    if request.user.is_authenticated:
+        return redirect('/home')
+
+    if request.method == "POST":
+        form = AuthenticationForm(request, data=request.POST)
+
+        if form.is_valid():
+            clean_usn = form.cleaned_data['username']
+            clean_pswd = form.cleaned_data['password']
+            user = authenticate(username=clean_usn, password=clean_pswd)
+            if user is not None:
+                if user.is_active:
+                    login(request, user)
+                    return redirect("/home")
+                else:
+                    return render(request, 'loginpage.html', {'form': form })
+        else:
+            pass
+    else:
+        form = AuthenticationForm()
+    return render(request, "loginpage.html", {"form": form })
 
 # for new users to create an account
 def create_account_view(request):
