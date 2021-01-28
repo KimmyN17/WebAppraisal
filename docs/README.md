@@ -43,14 +43,18 @@
 
 (USING DOCKER)
 1. Download [the Docker desktop app](https://docs.docker.com/get-docker/). If you already own Docker, please ensure that you have the `docker-compose` command. If not, install [here](https://docs.docker.com/compose/install/).
-2. Open up the Docker desktop app and follow the instruction to start running your first container.
-3. Create a file titled `.env` (do not specify a file type) under the top project directory (this should be named WebAppraisal but you may have named it something else)
+  a. You must have Hyper-V enabled for this to work. Follow this guide on how to do this: https://docs.microsoft.com/en-us/virtualization/hyper-v-on-windows/quick-start/enable-hyper-v 
+  b. If you have Windows 10 home, you need to install the WSL2 feature for Windows. Follow this guide to set this up: https://docs.docker.com/docker-for-windows/install-windows-home/
+
+2. Create a file titled `.env` (do not specify a file type) under the top project directory (this should be named WebAppraisal but you may have named it something else)
     * Add the following lines to this file: 
     
         `SECRET_KEY=INSERT SECRET KEY HERE WITHOUT QUOTES`
     `DATABASE_URL=postgres://postgres:postgres@db:5432/postgres`
-4. Run the following command from the top project directory: `docker-compose up --build`
-5. If you see `Starting development server at http://0.0.0.0:8000/` you are able to run the webapp locally! Try creating an account to ensure that the database is functional and refer to the FAQ section if you run into an error while creating your first account.
+    
+3. Run the following command from the top project directory: docker-compose run web python manage.py migrate
+4. After it is complete, run the following command to build the docker container: docker-compose up --build
+5. If you see `Starting development server at http://0.0.0.0:8000/` you are able to run the webapp locally! Open up the docker desktop app and you should now see "webappraisal" as a selection. Click on the dropdown, and hover over the "webappraisal_web_1" app. Click on the first button that is shown on the right, and it should take you to the WebAppraisal login page if successfull. You can also access the webpage by going to localhost:8000 in your browser.
 
 ### Running in Production Environment
 * We are quite there yet
@@ -75,9 +79,9 @@ A: You may not have the package requirements. Open up the requirements.txt insid
 
 Q: Why am I seeing errors when attempting to create a user for the first time with docker?
 
-A: You may have to make migrations to the update the database schema. Run the command `docker-compose run web python3 manage.py migrate` and then `docker-compose up --build` and try again.
+A: You may have to make migrations to the update the database schema. Run the command `docker-compose run web python manage.py migrate` and then `docker-compose up --build` and try again.
 
 
 Q: How do I create my admin account?
 
-A: Run the command `docker-compose run web python manage.py createsuperuser` and enter your information.
+A: In the Docker desktop app, click the dropdown for the webappraisal container. Hover over the "web_appraisal_web_1" and select the second button to the right of it (CLI). A command prompt should open up. From here, you can run "python manage.py createsuperuser". It should then prompt you for the information to make a superuser account. You can confirm that it has worked by going to localhost:8000/admin/ and entering in the credentials you created for the superuser.
