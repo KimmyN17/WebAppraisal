@@ -54,9 +54,9 @@
         `SECRET_KEY=INSERT SECRET KEY HERE WITHOUT QUOTES`
     `DATABASE_URL=postgres://postgres:postgres@db:5432/postgres`
     
-3. Run the following command from the top project directory: docker-compose up --build 
-4. After it is complete, run the following command: docker-compose run web python manage.py migrate (note, if you ran the last command in a cmd prompt, you won't be able to type in your command. Open up another command prompt and run the command from the project directory)
-5. If you see `Starting development server at http://0.0.0.0:8000/` you are able to run the webapp locally! Open up the docker desktop app and you should now see "webappraisal" as a selection. Click on the dropdown, and hover over the "webappraisal_web_1" app. Click on the first button that is shown on the right, and it should take you to the WebAppraisal login page if successfull. You can also access the webpage by going to localhost:8000 in your browser.
+3. Run the following command from the top project directory: docker-compose up --build. If you see `Starting development server at http://0.0.0.0:8000/` you are able to run the webapp locally! However, you will need to apply the migrations to ensure you have the latest changes.
+4. Run the following command from the project directory: docker-compose run web python manage.py migrate (note, if you ran the last command in a cmd prompt, you won't be able to type in your command. Open up another command prompt and run the command from the project directory)
+5.  In your webrowser, go to localhost:8000 and it should take you to the login page. Open up the docker desktop app and you should now see "webappraisal" as a selection. Click on the dropdown, and hover over the "webappraisal_web_1" app. Click on the first button that is shown on the right, and it should take you to the WebAppraisal login page if successfull.
 
 ### Running in Production Environment
 * We are quite there yet
