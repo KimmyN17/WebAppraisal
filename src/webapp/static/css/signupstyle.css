@@ -28,7 +28,7 @@ button:hover {
 	opacity:1;
 }
 
-.createaccount {
+.signup {
 	background-color: #4CAF50;
 	color: white;
 	padding: 20px 20px;
@@ -41,7 +41,7 @@ button:hover {
 	
 }
 
-.createaccount:hover {
+.signup:hover {
 	opacity:1.0
 }
 
@@ -59,6 +59,16 @@ button:hover {
 	background-color: #FFFFFF;
 	padding-top: 10px;
 }
+
+.georgia-text {
+	font-family: Georgia, serif;
+}
+
+label {
+  display: inline-block;
+  width: 140px;
+  text-align: right;
+}​
 
 hr {
 	border: 1px solid #f1f1f1;

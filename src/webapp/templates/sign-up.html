@@ -1,69 +1,95 @@
+{% load widget_tweaks %}
+
 <!DOCTYPE html>
 <html lang="en">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 
 <head>
   <link rel="stylesheet" href="../static/css/signupstyle.css">
+   <link rel="stylesheet" href="../static/css/loginstyle.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 </head>
 
 <body>
   <div style="vertical-align: middle; height:1200px; background-image: url('https://www.cvfhomes.com/wp-content/uploads/2019/03/631-simple-way-san-antonio-tx-1-High-Res-2.jpg');background-size: cover;" >
-    <div class="container">
-      <div style="text-align:center">
-        <font color="#ffffff" size="12px"><h1>WebAppraisal</h1></font>
+    <div>
+      <div class="innerdiv" style="text-align:center">
+        <font color="#ffffff" size="12px"><h1 style="font-family: Georgia, serif; font-size: 150%">WebAppraisal</h1></font>
         <div class="box" style="display:block; text-align:center; min-width:900px">
-          <div class="container" style="">
             <div style="margin:auto;">
-              <h1>Create your account</h1>
+              <h1 style="font-family: Georgia, serif; font-size: 150%">Create your account</h1>
               <hr>
-              <form>
+                <form method="POST">
+                {% csrf_token %}
+                <div class="container-align">
                 <div id="left_block" style="width:48%; float:left; padding:10px; border-right:1px solid black">
-                  <div>
-                    <label for="username"><b>Username<span style="color:red">*</span></b></label>
-                    <input type="text" placeholder="Enter username" name="username" required></input>
+                  <div class="block">
+                    <label for="id_username"><b>Username<span style="color:red">* </span></b></label>
+                    {% render_field form.username placeholder=form.username.label %}
+                  <br><br>
                   </div>
 
                   <div>
-                    <label><b>First Name<span style="color:red">*</span></b></label>
-                    <input type="text" placeholder="Enter first name" name="first_name" required></input>
+                    <label for="id_first_name"><b>First Name<span style="color:red">* </span></b></label>
+                    {% render_field form.first_name placeholder=form.first_name.label %}
+                  <br><br>
                   </div>
 
                   <div>
-                    <label><b>Last Name<span style="color:red">*</span></b></label>
-                    <input type="text" placeholder="Enter last name" name="last_name"></input>
+                  <label for="id_username"><b>Last Name<span style="color:red">* </span></b></label>
+                    {% render_field form.last_name placeholder=form.last_name.label %}
+                  <br><br>
                   </div>
 
                   <div>
-                    <label><b>Email<span style="color:red">*</span></b></label>
-                    <input type="email" placeholder="example@gmail.com" name="email" required></input>
+                     <label for="id_email"><b>Email Address<span style="color:red">* </span></b></label>
+                    {% render_field form.email placeholder=form.email.label %}
+                  <br><br>
                   </div>
-                </div> <!-- END LEFT BLOCK -->
+                  </div><!-- END LEFT BLOCK -->
 
                 <div id="right_block" style="width:48%; float:left">
-                  <div>
-                    <label><b>Password<span style="color:red">*</span></b></label>
-                    <input type="password" placeholder="Enter password" name="password1" required></input>
-                  </div>
+                    <div>
+                        <label for="id_password1"><b>Password<span style="color:red">* </span></b></label>
+                        {% render_field form.password1 placeholder=form.password1.label %}
+                    <br><br>
+                    </div>
 
-                  <div>
-                    <label><b>Re-enter Password<span style="color:red">*</span></b></label>
-                    <input type="password" placeholder="Re-enter password" name="password2" required></input>
-                  </div>
+                      <div>
+                        <label for="id_password2"><b>Re-enter Password<span style="color:red">* </span></b></label>
+                        {% render_field form.password2 placeholder=form.password2.label %}
+                      <br><br>
+                    </div>
 
-                  <div>
-                    <label><b>Phone (Optional):</b></label>
-                    <input type="number" placeholder="(123)-456-7890" name="phone_number"></input>
-                  </div>
+                      <div>
+                        <label for="id_phone_number"><b>Phone Number </b></label>
+                        {% render_field form.phone_number placeholder=form.phone_number.label %}
+                      <br><br>
+                       </div>
                   <br>
-                  <label><b>I am a(an):<span style="color:red">*</span></b></label>
-                  <select name="account_type" required>
-                    <option value="customer">Customer</option>
-                    <option value="appraiser">Appraiser</option>
-                  </select>
-                </div> <!-- END RIGHT BLOCK -->
+                  <label for="id_user_role"><b>I am a(an):<span style="color:red">* </span></b></label>
+                  {% render_field form.user_role placeholder=form.user_role.label %}
 
-                <button class="createaccount" type="submit" onclick="">Create Account</button>
-              </form>
+                </div><!-- END RIGHT BLOCK -->
+            </div>
+
+                <button style="font-family: Georgia, serif;" class="createaccount" type="submit" onclick="">Create Account</button>
+          </form>
+            {% if form.errors %}
+                {% for field in form %}
+                    {% for error in field.errors %}
+                        <div class="alert alert-danger">
+                            <strong>{{ error|escape }}</strong>
+                        </div>
+                    {% endfor %}
+                {% endfor %}
+                {% for error in form.non_field_errors %}
+                    <div class="alert alert-danger">
+                        <strong>{{ error|escape }}</strong>
+                    </div>
+                {% endfor %}
+            {% endif %}
+
             </div>
 
             <hr>
@@ -72,8 +98,6 @@
         </div>
       </div>
     </div>
-  </div>
-
 </body>
 
 </html>

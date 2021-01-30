@@ -56,7 +56,6 @@ def create_account_view(request):
             usr = authenticate(username=user.username, password=raw_password)
             login(request, usr)
             return redirect('/home/')
-
     else:
         form = NewUserForm()
     return render(request, 'sign-up.html', {'form': form})
