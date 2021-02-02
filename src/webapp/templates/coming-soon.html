@@ -8,9 +8,13 @@
 	<div class="container">
 		<div style="text-align:center">
 			<div class="box">
-				<hr>
-				<p>COMING SOON</p>
-				<hr>
+				<form method="POST">
+                    {% csrf_token %}
+						<hr>
+						<p>COMING SOON</p>
+						<hr>
+						<a href="{% url 'logout' %}">Logout</a>
+				</form>
 			</div>
 		</div>
 	</div>
