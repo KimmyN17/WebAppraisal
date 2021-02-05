@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
+<head>
+  <link rel="stylesheet" href="../static/css/accountstyle.css">
+  
+  <script>
+    showConfirm = function()
+    {
+      document.getElementById("confirm").style.visibility = "visible";
+      document.getElementById("mainView").style.visibility = "hidden";
+      const nobtn = document.createElement('button');
+      const yesbtn = document.createElement('button');
+      const warning = document.createElement('h1');
+      
+      warning.innerText = "Are you sure you want to delete your account?"
+      
+      nobtn.innerText = "No (return to page)";
+      nobtn.setAttribute('class', 'confirmBtn');
+      nobtn.setAttribute('onclick', 'location.reload()');
+      yesbtn.setAttribute('class', 'confirmBtn');
+      yesbtn.innerText = "Yes";
+  
+      document.getElementById("confirm").appendChild(warning);
+      document.getElementById("confirm").appendChild(yesbtn);
+      document.getElementById("confirm").appendChild(nobtn);
+    }
+  </script>
+</head>
+
+<body>
+  <div style="vertical-align: middle; height:1200px; background-image: url('https://www.cvfhomes.com/wp-content/uploads/2019/03/631-simple-way-san-antonio-tx-1-High-Res-2.jpg');background-size: cover;" >
+    <div class="topnav">
+    
+      <form action="loginpage.html">
+        <input class="backlink" type="submit" value="Back to Home"></input>
+      </form>
+      
+    </div>
+    <div class="container">
+      <div style="text-align:center" id="mainView">
+        <font color="#ffffff" size="12px"><h1>Welcome, (username)</h1></font>
+        <div class="box" style="display:block; text-align:center; min-width:900px">
+          <div class="container" style="">
+            <div style="margin:auto">
+            
+              <div class="confirm" id="confirm">
+                
+              </div>
+              
+              <h2>Account type: <span name="acctType">Account type</span></h2>
+              <h1>Your appraiser id is: <span id="accntId">12345</span></h1>
+              <hr>
+              <h1 style="margin:25px 25px 25px 25px" >Edit account information</h1>
+              <hr>
+              <form>
+                <div id="left_block" style="width:48%; float:left; padding:10px; border-right:1px solid black">
+                  <div>
+                    <label for="phone"><b>Phone</b></label>
+                    <input type="text" placeholder="(***)-***-****" name="phone"></input>
+                  </div>
+
+                  <div>
+                    <label><b>First Name</b></label>
+                    <input type="text" placeholder="Enter first name" name="first_name"></input>
+                  </div>
+                </div> <!-- END LEFT BLOCK -->
+
+                <div id="right_block" style="width:48%; float:left">
+                  <div>
+                    <label><b>Email</b></label>
+                    <input type="email" placeholder="Enter new email" name="email"></input>
+                  </div>
+
+                  <div>
+                    <label><b>Last Name</b></label>
+                    <input type="text" placeholder="Enter last name" name="last_name"></input>
+                  </div>
+
+                </div> <!-- END RIGHT BLOCK -->
+
+                <button class="submitchanges" type="submit" onclick="">Submit Changes</button>
+              </form>
+              <hr class="separator">
+              <form>
+                <button class="delete_account" type="button" onclick="showConfirm()" >Delete Account</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+  </div>
+
+</body>
+
+</html>
