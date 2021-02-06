@@ -1,11 +1,6 @@
-from django.contrib.auth import authenticate, login, logout
-from django.contrib.auth.decorators import login_required
-from django.shortcuts import render
-from django.shortcuts import redirect
-from django.utils.translation import ugettext_lazy
 from django.contrib.auth.models import User
 from django.shortcuts import render, redirect
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib import messages
 
@@ -22,9 +17,9 @@ def redirect_to_login(request):
 # login page - default when first opening the webapp
 def login_view(request):
     # TODO: Remove once logout button is functioning
-    logout(request)
-    if request.user.is_authenticated:
-        return redirect('/home')
+  #  logout(request)
+   # if request.user.is_authenticated:
+    #    return redirect('/home')
 
     if request.method == "POST":
         form = AuthenticationForm(request, data=request.POST)
@@ -44,6 +39,10 @@ def login_view(request):
     else:
         form = AuthenticationForm()
     return render(request, "loginpage.html", {"form": form })
+
+def logout_view(request):
+    logout(request)
+    return redirect('welcome/')
 
 # for new users to create an account
 def create_account_view(request):

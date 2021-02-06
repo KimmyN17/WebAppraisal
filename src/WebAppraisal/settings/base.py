@@ -20,6 +20,7 @@ from environ import Env
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 LOGIN_REDIRECT_URL = 'home'
+LOGOUT_REDIRECT_URL = '/'
 
 env = Env()
 env.read_env(env_file='.env')
@@ -28,7 +29,7 @@ env.read_env(env_file='.env')
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = env('SECRET_KEY')
+SECRET_KEY ='81^z=hztzll#o68sw6&4c6yg-6(=1x)h60qeiuhdgs*owo=1%a'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
