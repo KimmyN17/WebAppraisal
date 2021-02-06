@@ -1,9 +1,12 @@
+{% load widget_tweaks %}
+
 <!DOCTYPE html>
 <html lang="en">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 
 <head>
   <link rel="stylesheet" href="../static/css/accountstyle.css">
+
   
   <script>
     showConfirm = function()
@@ -14,12 +17,13 @@
       const yesbtn = document.createElement('button');
       const warning = document.createElement('h1');
       
-      warning.innerText = "Are you sure you want to delete your account?"
+      warning.innerText = "Are you sure you want to delete your account?";
       
       nobtn.innerText = "No (return to page)";
       nobtn.setAttribute('class', 'confirmBtn');
       nobtn.setAttribute('onclick', 'location.reload()');
       yesbtn.setAttribute('class', 'confirmBtn');
+      yesbtn.setAttribute('name', 'delete_account_confirm');
       yesbtn.innerText = "Yes";
   
       document.getElementById("confirm").appendChild(warning);
@@ -33,49 +37,67 @@
   <div style="vertical-align: middle; height:1200px; background-image: url('https://www.cvfhomes.com/wp-content/uploads/2019/03/631-simple-way-san-antonio-tx-1-High-Res-2.jpg');background-size: cover;" >
     <div class="topnav">
     
-      <form action="loginpage.html">
+      <form action="/home">
         <input class="backlink" type="submit" value="Back to Home"></input>
       </form>
       
     </div>
     <div class="container">
       <div style="text-align:center" id="mainView">
-        <font color="#ffffff" size="12px"><h1>Welcome, (username)</h1></font>
+        <font color="#ffffff" size="12px"><h1>Welcome, {{ django_user.username }}</h1></font>
+
+          <div>
+            {% if messages %}
+                {% for message in messages %}
+                   <div class="success-msg">{{message}}</div><br>
+                {% endfor %}
+            {% endif %}
+          </div>
+
+            </div>
         <div class="box" style="display:block; text-align:center; min-width:900px">
           <div class="container" style="">
             <div style="margin:auto">
-            
-              <div class="confirm" id="confirm">
-                
-              </div>
-              
-              <h2>Account type: <span name="acctType">Account type</span></h2>
-              <h1>Your appraiser id is: <span id="accntId">12345</span></h1>
+
+                <form method="POST">
+                  {% csrf_token %}
+                  <div class="confirm" id="confirm">
+
+                    </div>
+                </form>
+
+              <h2>Account type: <span name="acctType">{{ role }}</span></h2>
               <hr>
               <h1 style="margin:25px 25px 25px 25px" >Edit account information</h1>
               <hr>
-              <form>
+              <form method="POST">
+              {% csrf_token %}
                 <div id="left_block" style="width:48%; float:left; padding:10px; border-right:1px solid black">
-                  <div>
-                    <label for="phone"><b>Phone</b></label>
-                    <input type="text" placeholder="(***)-***-****" name="phone"></input>
+                   <div>
+                        <label for="id_username"><b>Username</b></label>
+                        {% render_field user_form.username placeholder=user_form.username.label %}
                   </div>
 
                   <div>
-                    <label><b>First Name</b></label>
-                    <input type="text" placeholder="Enter first name" name="first_name"></input>
+                    <label for="id_first_name"><b>First Name</b></label>
+                    {% render_field user_form.first_name placeholder=user_form.first_name.label %}
+                  </div>
+
+                  <div>
+                    <label for="id_phone_number"><b>Phone</b></label>
+                    {% render_field phone_num_form.phone_number placeholder=phone_num_form.phone_number.label %}
                   </div>
                 </div> <!-- END LEFT BLOCK -->
 
                 <div id="right_block" style="width:48%; float:left">
                   <div>
-                    <label><b>Email</b></label>
-                    <input type="email" placeholder="Enter new email" name="email"></input>
+                    <label for="id_email"><b>Email</b></label>
+                    {% render_field user_form.email placeholder=user_form.email.label %}
                   </div>
 
                   <div>
-                    <label><b>Last Name</b></label>
-                    <input type="text" placeholder="Enter last name" name="last_name"></input>
+                    <label for="id_last_name"><b>Last Name</b></label>
+                    {% render_field user_form.last_name placeholder=user_form.last_name.label %}
                   </div>
 
                 </div> <!-- END RIGHT BLOCK -->
@@ -83,8 +105,10 @@
                 <button class="submitchanges" type="submit" onclick="">Submit Changes</button>
               </form>
               <hr class="separator">
-              <form>
+              <form method="POST">
+                {% csrf_token %}
                 <button class="delete_account" type="button" onclick="showConfirm()" >Delete Account</button>
+              </form>
             </div>
           </div>
         </div>

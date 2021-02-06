@@ -1,12 +1,15 @@
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
 from django.shortcuts import redirect
+from django.utils.translation import ugettext_lazy
 from django.contrib.auth.models import User
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.forms import AuthenticationForm
+from django.contrib import messages
 
-from src.WebAppraisal.forms import NewUserForm
+from src.WebAppraisal.forms import NewUserForm, UpdateAccountForm, UpdatePhoneNumberForm
 from src.webapp.models import Profile
 
 APPRAISER_ROLE = 'APPRAISER'
@@ -61,7 +64,53 @@ def create_account_view(request):
     return render(request, 'sign-up.html', {'form': form})
 
 # home page for both appraisers and their customers
+@login_required(login_url='/welcome')
 def dashboard_view(request):
     current_user = User.objects.get(pk=request.user.id)
     return render(request, 'coming-soon.html', {'user': current_user})
+
+# view where users can change their account information or delete their account
+@login_required(login_url='/welcome')
+def account_management_view(request):
+    user = User.objects.get(pk=request.user.id)
+    additional_user_info = Profile.objects.get(pk=request.user.id)
+
+    if request.method == 'POST':
+        # on the button: <input type=submit name=update_account
+        if 'update_account' in request.POST:
+            user_form = UpdateAccountForm(request.POST, instance=user)
+            phone_num_form = UpdatePhoneNumberForm(request.POST, instance=additional_user_info)
+
+            if user_form.is_valid() or phone_num_form.is_valid():
+                if user_form.is_valid():
+                    username = user_form.cleaned_data['username']
+                    try:
+                        same_user = User.objects.exclude(pk=request.user.id).get(username=username)
+                    except User.DoesNotExist:
+                        user_form.save()
+                    else:
+                        messages.error(request, "Username already in use!")
+
+                if phone_num_form.is_valid():
+                    phone_num_form.save()
+                # see https://stackoverflow.com/questions/28723266/django-display-message-after-post-form-submit to implement
+                messages.success(request, "We've successfully updated your account")
+                return redirect('/account-management')
+
+        # on the button: <input ... name=delete_account
+        # likely want a popup button to confirm
+        elif 'delete_account_confirm' in request.POST:
+            user.delete()
+            return redirect('/welcome')
+
+    else:
+        user_form = UpdateAccountForm(instance=user)
+        phone_num_form = UpdatePhoneNumberForm(instance=additional_user_info)
+        return render(request, 'manage-account.html', context={'user_form': user_form, 'phone_num_form': phone_num_form,
+                                                             'django_user': user, 'webappraisal_user': additional_user_info,
+                                                             'role': additional_user_info.get_display_role() })
+
+
+
+
 

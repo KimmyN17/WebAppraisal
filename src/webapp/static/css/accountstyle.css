@@ -66,6 +66,15 @@ hr {
   background-color: red;
 }
 
+.success-msg {
+  color: #270;
+  background-color: #DFF2BF;
+  margin: 25px 25px 25px 25px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  border-radius: 3px 3px 3px 3px;
+}
+
 .confirm {
   background-color: white;
   visibility = hidden;
@@ -96,6 +105,7 @@ hr {
   text-decoration:none;
   min-width:110px;
 }
+
 
 
 </style>
